@@ -1,0 +1,52 @@
+* {
+	font-family: chuck, sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	box-sizing: border-box;
+}
+html, body{
+	margin: 0;
+	padding: 0;
+	display:flex;
+  align-items:center;
+  justify-content:center;
+	width: 100vw;
+	height: 100%;
+	font-size: 16px;
+}
+.card__content{
+	text-align: center;
+}
+
+.card__content h1 {
+	font-size: 4.5rem;
+	margin: -1rem auto;
+}
+.card__content h2 {
+	font-size: 3.3rem;
+	margin: 0;
+}
+.card__content p {
+	font-size: 3.22rem;
+	font-family: blue-goblet-alt, sans-serif;
+	font-weight: 700;
+	font-style: normal;
+	color: #FF833E;
+	text-shadow: .75px 0px #000, -0.75px 0px #000, 0px .75px #000, 0px -0.75px #000;
+	-webkit-text-stroke: .75px #000;
+	text-stroke: .75px #000;
+	letter-spacing: -1px;
+	margin: 0;
+	transform: translate(20%, -45%) rotate(-4deg);
+}
+.card{
+	width: 382px;
+	height: 721px;
+	display:flex;
+  align-items:center;
+  justify-content:center;
+	background: url(https://i.imgur.com/W238z0z.jpg) center center no-repeat;
+	background-size: cover;
+}
+
+
