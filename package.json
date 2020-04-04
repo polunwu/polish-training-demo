@@ -5,6 +5,7 @@
   "license": "MIT",
   "homepage": "https://codepen.io/Polunwu/pen/LYVawYp",
   "scripts": {
+    "start": "node server.js",
     "build": "gulp -f ./build/gulpfile.js --cwd ./ --continue",
     "serve": "gulp serve -f ./build/gulpfile.js --cwd ./ --continue",
     "task": "gulp -f ./build/gulpfile.js --cwd ./ --continue",
