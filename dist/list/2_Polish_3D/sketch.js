@@ -1,11 +1,11 @@
 let polishman;
 
-function preload(){
+function preload() {
   polishman = loadModel('polish_man.obj', true);
 }
 
 function setup() {
-  createCanvas(600, 600, WEBGL);
+  createCanvas(windowWidth, windowHeight, WEBGL);
 }
 
 function draw() {
@@ -17,5 +17,8 @@ function draw() {
   rotateZ(frameCount * 0.01);
   normalMaterial();
   model(polishman);
+}
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
