@@ -103,6 +103,9 @@ ul {
   margin: 0;
   padding: 0;
 }
+.navigation-links__item {
+  display: inline-block;
+}
 .contact-info__item a,
 .navigation-links__item a {
   color: #0d0d0d;
@@ -130,5 +133,24 @@ ul {
   right: 0px;
   margin-right: 5%;
 }
+// hover effect
+.navigation-links__item:after{
+  display: block;
+  content: '';
+  transform-origin: 100% 50%;
+  transform: scaleX(0);  
+  transition: transform 250ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+.navigation-links--top .navigation-links__item:after{
+  border-bottom: solid 3px #0d0d0d;
+}
+.navigation-links--bottom .navigation-links__item:after{
+  border-bottom: solid 2px #0d0d0d;
+}
+.navigation-links__item:hover:after{
+  transform-origin: 0% 50%;
+  transform: scaleX(1);  
+}
+// end of hover effect
 
     
