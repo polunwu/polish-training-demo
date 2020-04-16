@@ -42,13 +42,29 @@ body {
   z-index: 100;
 }
 .menu-trigger__bar{
-  background-color: red;
+  background-color: #fff;
   display: block;
   width: 22px;
   height: 2px;
   margin-bottom: 6px;
   padding: 0;
+  transform-origin: 100% 50%;
+  transition: all .3s cubic-bezier(.25,.46,.45,.94);
 }
+// menu trigger active effect
+.menu-trigger.menu-trigger--active .menu-trigger__bar{
+  background-color: #0d0d0d;
+}
+.menu-trigger.menu-trigger--active .menu-trigger__bar.menu-trigger__bar--top {
+  transform: rotate(-45deg);
+}
+.menu-trigger.menu-trigger--active .menu-trigger__bar.menu-trigger__bar--middle {
+  opacity: 0;
+}
+.menu-trigger.menu-trigger--active .menu-trigger__bar.menu-trigger__bar--bottom {
+  transform: rotate(45deg);
+}
+// end of menu trigger active effect
 .navigation__menu{
   position: absolute;
   top: 0;
@@ -133,7 +149,7 @@ ul {
   right: 0px;
   margin-right: 5%;
 }
-// hover effect
+// menu item hover effect
 .navigation-links__item:after{
   display: block;
   content: '';
@@ -151,6 +167,6 @@ ul {
   transform-origin: 0% 50%;
   transform: scaleX(1);  
 }
-// end of hover effect
+// end of menu item hover effect
 
     

@@ -3,7 +3,8 @@ window.addEventListener('load', function () {
   const menu = document.getElementById('navigation__menu');
 
   menuTrigger.addEventListener('click', function () {
-    menu.classList.toggle('navigation__menu--open')
+    menuTrigger.classList.toggle('menu-trigger--active');
+    menu.classList.toggle('navigation__menu--open');
   })
 
 
