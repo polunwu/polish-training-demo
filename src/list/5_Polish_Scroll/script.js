@@ -5,6 +5,7 @@ window.addEventListener('load', function () {
   const menuRight = document.getElementById('navigation__menu-right');
 
   // GSAP Timelines
+  // - header
   const showHeader = gsap.timeline();
   showHeader.from('.header-title', {
     delay: 0.1,
@@ -14,6 +15,7 @@ window.addEventListener('load', function () {
     y: 50,
     autoAlpha: 0
   });
+  // - menu
   const fadeInMenuItems = gsap.timeline();
   fadeInMenuItems.from('.navigation-links__item', {
     delay: 0.7,
@@ -32,6 +34,35 @@ window.addEventListener('load', function () {
     opacity: 0
   });
   fadeOutMenuItems.pause();
+
+  // ScrollMagic
+  const controller = new ScrollMagic.Controller();
+  // - featureWork title
+  document.querySelectorAll('.js-showFeatureTitle').forEach(function (element, i) {
+    gsap.set(element, { opacity: 0, y: "50%", skewY: "-2.5deg" });
+    let tl = new gsap.timeline();
+    tl.to(element, {
+      duration: 1.2,
+      opacity: 1,
+      y: "0%",
+      skewY: "0deg",
+      ease: "expo.out"
+    });
+    new ScrollMagic.Scene({
+      triggerElement: element.parentElement,
+      triggerHook: 0.85,
+      reverse: false
+    })
+      .setTween(tl)
+      .addIndicators({
+        name: 'reveal title ' + i,
+        colorStart: "#ddd",
+        colorEnd: "#ddd",
+        colorTrigger: "#ddd"
+      })
+      .addTo(controller);
+  });
+
 
   menuTrigger.addEventListener('click', function () {
     if (menuTrigger.classList.contains('menu-trigger--active')) {
