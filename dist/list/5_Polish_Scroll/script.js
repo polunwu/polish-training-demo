@@ -37,7 +37,7 @@ window.addEventListener('load', function () {
 
   // ScrollMagic
   const controller = new ScrollMagic.Controller();
-  // - featureWork title
+  // - featureWork title **only once**
   document.querySelectorAll('.js-showFeatureTitle').forEach(function (element, i) {
     gsap.set(element, { opacity: 0, y: "50%", skewY: "-2.5deg" });
     let tl = new gsap.timeline();
@@ -51,17 +51,53 @@ window.addEventListener('load', function () {
     new ScrollMagic.Scene({
       triggerElement: element.parentElement,
       triggerHook: 0.85,
-      reverse: false
+      reverse: false,
+      offset: i == 0 ? -50 : 150
     })
       .setTween(tl)
       .addIndicators({
-        name: 'reveal title ' + i,
+        name: 'revealTitle ' + i,
         colorStart: "#ddd",
         colorEnd: "#ddd",
         colorTrigger: "#ddd"
       })
       .addTo(controller);
   });
+  // reveal mask
+  gsap.set('.js-revealMask', { x: 0 });
+  let revealMask = gsap.to('.js-revealMask', {
+    duration: 0.8,
+    xPercent: 100,
+    ease: "expo.inOut"
+  })
+  new ScrollMagic.Scene({
+    triggerElement: '.js-feature-work__preview',
+    triggerHook: 0.5
+  })
+    .setTween(revealMask)
+    .addIndicators({
+      name: 'revealMask',
+      colorStart: "#ddd",
+      colorEnd: "#ddd",
+      colorTrigger: "#ddd"
+    })
+    .addTo(controller);
+  // bg color timeline
+  gsap.set('.js-preview-bg', { backgroundColor: "rgb(255,90,0)" });
+  let changeBgColor = new gsap.timeline();
+  changeBgColor.to('.js-preview-bg', { backgroundColor: "rgb(57,59,118)" })
+    .to('.js-preview-bg', { backgroundColor: "rgb(31,35,83)" });
+  new ScrollMagic.Scene({
+    triggerElement: '.js-preview-spacer',
+    triggerHook: 'onLeave',
+    duration: "200%"
+  })
+    .setPin('.js-preview-spacer')
+    .setTween(changeBgColor)
+    .addIndicators({
+      name: 'changeBgColor & Pin d=200%'
+    })
+    .addTo(controller);
 
 
   menuTrigger.addEventListener('click', function () {
