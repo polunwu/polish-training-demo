@@ -55,15 +55,15 @@ window.addEventListener('load', function () {
       offset: i == 0 ? -50 : 150
     })
       .setTween(tl)
-      .addIndicators({
-        name: 'revealTitle ' + i,
-        colorStart: "#ddd",
-        colorEnd: "#ddd",
-        colorTrigger: "#ddd"
-      })
+      // .addIndicators({
+      //   name: 'revealTitle ' + i,
+      //   colorStart: "#ddd",
+      //   colorEnd: "#ddd",
+      //   colorTrigger: "#ddd"
+      // })
       .addTo(controller);
   });
-  // reveal mask
+  // - reveal mask
   gsap.set('.js-revealMask', { x: 0 });
   let revealMask = gsap.to('.js-revealMask', {
     duration: 0.8,
@@ -75,18 +75,21 @@ window.addEventListener('load', function () {
     triggerHook: 0.5
   })
     .setTween(revealMask)
-    .addIndicators({
-      name: 'revealMask',
-      colorStart: "#ddd",
-      colorEnd: "#ddd",
-      colorTrigger: "#ddd"
-    })
+    // .addIndicators({
+    //   name: 'revealMask',
+    //   colorStart: "#ddd",
+    //   colorEnd: "#ddd",
+    //   colorTrigger: "#ddd"
+    // })
     .addTo(controller);
-  // bg color timeline
-  gsap.set('.js-preview-bg', { backgroundColor: "rgb(255,90,0)" });
-  let changeBgColor = new gsap.timeline();
+  // - bg color timeline
+  /*gsap.set('.js-preview-bg', { backgroundColor: "rgb(255,90,0)" });
   changeBgColor.to('.js-preview-bg', { backgroundColor: "rgb(57,59,118)" })
-    .to('.js-preview-bg', { backgroundColor: "rgb(31,35,83)" });
+    .to('.js-preview-bg', { backgroundColor: "rgb(31,35,83)" });*/
+  gsap.set('.js-preview-bg', { backgroundColor: "rgb(242,218,53)" });
+  let changeBgColor = new gsap.timeline();
+  changeBgColor.to('.js-preview-bg', { backgroundColor: "rgb(124,229,250)" })
+    .to('.js-preview-bg', { backgroundColor: "rgb(23,156,119)" });
   new ScrollMagic.Scene({
     triggerElement: '.js-preview-spacer',
     triggerHook: 'onLeave',
@@ -94,9 +97,54 @@ window.addEventListener('load', function () {
   })
     .setPin('.js-preview-spacer')
     .setTween(changeBgColor)
-    .addIndicators({
-      name: 'changeBgColor & Pin d=200%'
-    })
+    // .addIndicators({
+    //   name: 'changeBgColor & Pin d=200%',
+    //   colorStart: "#ddd",
+    //   colorEnd: "#ddd",
+    //   colorTrigger: "#ddd"
+    // })
+    .addTo(controller);
+  // - reveal entire preview images list 
+  gsap.set('.js-preview-list', { opacity: 0 });
+  let revealPreviewList = new gsap.timeline();
+  revealPreviewList.to('.js-preview-list', {
+    duration: 0.4,
+    opacity: 1,
+    ease: "expo.inOut"
+  });
+  new ScrollMagic.Scene({
+    triggerElement: '.js-preview-spacer',
+    triggerHook: 0.2
+  })
+    .setTween(revealPreviewList)
+    // .addIndicators({
+    //   name: 'revealPreviewList',
+    //   colorStart: "#ddd",
+    //   colorEnd: "#ddd",
+    //   colorTrigger: "#ddd",
+    //   indent: 500
+    // })
+    .addTo(controller);
+  // - slide preview images list 
+  gsap.set('.js-preview-list', { x: 0 });
+  let slidePreviewList = new gsap.timeline();
+  slidePreviewList.to('.js-preview-list', {
+    x: "-500%",
+    ease: "none"
+  });
+  new ScrollMagic.Scene({
+    triggerElement: '.js-preview-spacer',
+    triggerHook: 0.2,
+    duration: "230%"
+  })
+    .setTween(slidePreviewList)
+    // .addIndicators({
+    //   name: 'slidePreviewList',
+    //   colorStart: "#ddd",
+    //   colorEnd: "#ddd",
+    //   colorTrigger: "#ddd",
+    //   indent: 700
+    // })
     .addTo(controller);
 
 

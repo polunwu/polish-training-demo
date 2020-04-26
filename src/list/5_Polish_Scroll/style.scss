@@ -317,6 +317,7 @@ ul {
 .feature-work__preview-pin-spacer{
   width: 100%;
   min-height: 721px;
+  overflow: hidden;
 }
 .feature-work__preview-bg{
   position: absolute;
@@ -336,6 +337,24 @@ ul {
   position: relative;
   will-change: transform;
   list-style-type: none;
+}
+.feature-work__preview-list-item{
+  width: 200%;
+  height: 100vh;
+  display: inline-block;
+  position: relative;
+}
+.feature-work__preview-image{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0;
+  padding-bottom: 66.66667%; // stretch for 66% height of parent container
+  background-size: contain;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  transform: translateY(-50%);
 }
 
 // FOOTER
