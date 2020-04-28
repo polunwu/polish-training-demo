@@ -30,7 +30,8 @@ body {
   transform-origin: center;
   -webkit-transform: rotate(-180deg);
   -ms-transform: rotate(-180deg);
-  transform: rotate(-180deg); }
+  transform: rotate(-180deg);
+  mix-blend-mode: difference; }
 
 .email a {
   color: inherit;
@@ -53,7 +54,8 @@ body {
   padding: 41px;
   width: 22px;
   cursor: pointer;
-  z-index: 100; }
+  z-index: 100;
+  mix-blend-mode: difference; }
 
 .menu-trigger__bar {
   background-color: #fff;

@@ -26,6 +26,8 @@ body {
   writing-mode: vertical-rl;
   transform-origin: center;
   transform: rotate(-180deg);
+
+  mix-blend-mode: difference;
 }
 .email a {
   color: inherit;
@@ -42,6 +44,8 @@ body {
   width: 22px;
   cursor: pointer;
   z-index: 100;
+
+  mix-blend-mode: difference;
 }
 .menu-trigger__bar{
   background-color: #fff;
