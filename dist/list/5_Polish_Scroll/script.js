@@ -146,6 +146,22 @@ window.addEventListener('load', function () {
     //   indent: 700
     // })
     .addTo(controller);
+  // - reveal footer content
+  gsap.set('.js-footer-top', { autoAlpha: 0, y: 50 });
+  let revealFooterContent = new gsap.timeline();
+  revealFooterContent.to('.js-footer-top', {
+    duration: 1,
+    autoAlpha: 1,
+    y: 0,
+    ease: "expo.In"
+  });
+  new ScrollMagic.Scene({
+    triggerElement: '.js-footer',
+    triggerHook: 0.7,
+    reverse: false
+  })
+    .setTween(revealFooterContent)
+    .addTo(controller);
 
 
   menuTrigger.addEventListener('click', function () {

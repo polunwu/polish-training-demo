@@ -1,5 +1,5 @@
 body {
-  background: #0d0d0d;
+  background: #000;
   font-family: Arial, Helvetica, sans-serif;
 }
 .logo {
@@ -30,6 +30,7 @@ body {
   mix-blend-mode: difference;
 }
 .email a {
+  font-size: 12px;
   color: inherit;
   text-decoration: none;
 }
@@ -203,7 +204,7 @@ ul {
 .header-home {
   padding-top: 20vh;
   padding-bottom: 20vh;
-  background-color: #0d0d0d;
+  background-color: #000;
   color: #fff;
   position: relative;
 }
@@ -315,7 +316,7 @@ ul {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #0d0d0d;
+  background-color: #000;
   z-index: 10;
 }
 .feature-work__preview-pin-spacer{
@@ -363,11 +364,62 @@ ul {
 
 // FOOTER
 .footer{
-  height: 100vh;
-  background-color: #ddd;
+  color: #fff;
+  background-color: #0f0f0f;
   font-size: 0px;
-  padding: 50px;
 }
-.footer h1 {
-  font-size: 80px;
+.footer-container{
+  min-height: 500px;
+  max-width: 100%;
+  padding: 0px 5vw 0px 13vw;
 }
+.footer__top{
+  padding-top: 100px;
+  padding-bottom: 250px;
+  display: flex;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+.footer-links{
+  width: 25vw;
+  padding-bottom: 40px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+.footer-links li, 
+.footer-contact-info li{
+  padding-bottom: 1.15rem;
+}
+.footer-links li a, .footer-contact-info li a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+.footer-contact-info li span{
+  font-size: 0.875rem;
+}
+.footer-links li a span:nth-child(2) {
+  padding-left: 20px;
+}
+.footer__brand{
+  padding-bottom: 80px;
+  width: 37vw;
+  @media (max-width: 900px) {
+    width: 30vw;
+  }
+}
+.footer__brand img{
+  width: 150px;
+}
+.footer__bottom{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.footer__bottom p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
