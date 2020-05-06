@@ -26,7 +26,7 @@ function draw() {
 
 function mousePressed() {
   for (let ball of balls) {
-    ball.clicked();
+    ball.clicked(mouseX, mouseY);
   }
 }
 
@@ -43,8 +43,8 @@ class Ball {
     this.size = random(BALL_MIN_SIZE, BALL_MAX_SIZE);
   }
 
-  clicked() {
-    let d = dist(mouseX, mouseY, this.x, this.y);
+  clicked(x, y) {
+    let d = dist(x, y, this.x, this.y);
     if (d < this.size / 2) {
       this.size = 5;
       this.xSpeed = random(-0.25, 0.25);
