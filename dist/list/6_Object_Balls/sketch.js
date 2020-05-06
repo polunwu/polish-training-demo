@@ -19,13 +19,15 @@ function setup() {
 
 function draw() {
   background(0);
-  balls.forEach(ball => {
+  for (let ball of balls) {
     ball.init();
-  });
+  }
 }
 
 function mousePressed() {
-  balls.push(new Ball(mouseX, mouseY));
+  for (let ball of balls) {
+    ball.clicked();
+  }
 }
 
 function windowResized() {
@@ -40,6 +42,16 @@ class Ball {
     this.ySpeed = random(-BALL_SPEED, BALL_SPEED);
     this.size = random(BALL_MIN_SIZE, BALL_MAX_SIZE);
   }
+
+  clicked() {
+    let d = dist(mouseX, mouseY, this.x, this.y);
+    if (d < this.size / 2) {
+      this.size = 5;
+      this.xSpeed = random(-0.25, 0.25);
+      this.ySpeed = random(-0.25, 0.25);
+    }
+  }
+
   move() {
     this.x += this.xSpeed;
     this.y += this.ySpeed;
