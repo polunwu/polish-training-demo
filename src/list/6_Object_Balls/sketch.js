@@ -5,7 +5,7 @@ const BALL_COUNT = 150;
 const BALL_MIN_SIZE = 5;
 const BALL_MAX_SIZE = 170;
 const BALL_MAX_RADIUS = BALL_MAX_SIZE / 2;
-const BALL_SPEED = 4;
+const BALL_SPEED = 1;
 // end of config
 
 function setup() {
