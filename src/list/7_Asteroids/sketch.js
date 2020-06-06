@@ -71,50 +71,15 @@ function update() {
   if (ship.thrusting) {
     ship.thrust.x += SHIP_THRUST * Math.cos(ship.a) / FPS;
     ship.thrust.y -= SHIP_THRUST * Math.sin(ship.a) / FPS;
-
     // draw the thruster
-    ctx.fillStyle = 'red';
-    ctx.strokeStyle = 'yellow';
-    ctx.lineWidth = SHIP_SIZE / 10;
-    ctx.beginPath();
-    ctx.moveTo( // rear left of th ship
-      ship.x - ship.r * (2 / 3 * Math.cos(ship.a) + 0.5 * Math.sin(ship.a)),
-      ship.y + ship.r * (2 / 3 * Math.sin(ship.a) - 0.5 * Math.cos(ship.a))
-    )
-    ctx.lineTo( // rear center behind the ship
-      ship.x - ship.r * 6 / 3 * Math.cos(ship.a),
-      ship.y + ship.r * 6 / 3 * Math.sin(ship.a)
-    )
-    ctx.lineTo( // rear rigth
-      ship.x - ship.r * (2 / 3 * Math.cos(ship.a) - 0.5 * Math.sin(ship.a)),
-      ship.y + ship.r * (2 / 3 * Math.sin(ship.a) + 0.5 * Math.cos(ship.a))
-    )
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
+    drawThruster();
   } else {
     ship.thrust.x -= FRICTION * ship.thrust.x / FPS;
     ship.thrust.y -= FRICTION * ship.thrust.y / FPS;
   }
 
   // draw a triangular ship
-  ctx.strokeStyle = 'white';
-  ctx.lineWidth = SHIP_SIZE / 20;
-  ctx.beginPath();
-  ctx.moveTo( // nose of th ship
-    ship.x + 4 / 3 * ship.r * Math.cos(ship.a),
-    ship.y - 4 / 3 * ship.r * Math.sin(ship.a)
-  )
-  ctx.lineTo( // rear left
-    ship.x - ship.r * (2 / 3 * Math.cos(ship.a) + Math.sin(ship.a)),
-    ship.y + ship.r * (2 / 3 * Math.sin(ship.a) - Math.cos(ship.a))
-  )
-  ctx.lineTo( // rear right
-    ship.x - ship.r * (2 / 3 * Math.cos(ship.a) - Math.sin(ship.a)),
-    ship.y + ship.r * (2 / 3 * Math.sin(ship.a) + Math.cos(ship.a))
-  )
-  ctx.closePath();
-  ctx.stroke();
+  drawShip();
 
   // rotate ship
   ship.a += ship.rot;
@@ -134,8 +99,50 @@ function update() {
   } else if (ship.y > canv.height + ship.r) {
     ship.y = 0 - ship.r;
   }
+}
 
-  // center dot
+function drawThruster() {
+  ctx.fillStyle = 'red';
+  ctx.strokeStyle = 'yellow';
+  ctx.lineWidth = SHIP_SIZE / 10;
+  ctx.beginPath();
+  ctx.moveTo( // rear left of th ship
+    ship.x - ship.r * (2 / 3 * Math.cos(ship.a) + 0.5 * Math.sin(ship.a)),
+    ship.y + ship.r * (2 / 3 * Math.sin(ship.a) - 0.5 * Math.cos(ship.a))
+  )
+  ctx.lineTo( // rear center behind the ship
+    ship.x - ship.r * 6 / 3 * Math.cos(ship.a),
+    ship.y + ship.r * 6 / 3 * Math.sin(ship.a)
+  )
+  ctx.lineTo( // rear rigth
+    ship.x - ship.r * (2 / 3 * Math.cos(ship.a) - 0.5 * Math.sin(ship.a)),
+    ship.y + ship.r * (2 / 3 * Math.sin(ship.a) + 0.5 * Math.cos(ship.a))
+  )
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+}
+
+function drawShip() {
+  // draw a triangular ship
+  ctx.strokeStyle = 'white';
+  ctx.lineWidth = SHIP_SIZE / 20;
+  ctx.beginPath();
+  ctx.moveTo( // nose of th ship
+    ship.x + 4 / 3 * ship.r * Math.cos(ship.a),
+    ship.y - 4 / 3 * ship.r * Math.sin(ship.a)
+  )
+  ctx.lineTo( // rear left
+    ship.x - ship.r * (2 / 3 * Math.cos(ship.a) + Math.sin(ship.a)),
+    ship.y + ship.r * (2 / 3 * Math.sin(ship.a) - Math.cos(ship.a))
+  )
+  ctx.lineTo( // rear right
+    ship.x - ship.r * (2 / 3 * Math.cos(ship.a) - Math.sin(ship.a)),
+    ship.y + ship.r * (2 / 3 * Math.sin(ship.a) + Math.cos(ship.a))
+  )
+  ctx.closePath();
+  ctx.stroke();
+  // draw center dot
   ctx.fillStyle = 'red';
   ctx.fillRect(ship.x - 1, ship.y - 1, 2, 2);
 }
