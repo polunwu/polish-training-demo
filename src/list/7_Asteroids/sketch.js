@@ -7,9 +7,13 @@ const LASER_SPD         = 500; // speed of lasers in pixels per second
 const LASER_EXPLODE_DUR = 0.2; // duration of the laser's explosion in seconds
 const ROIDS_NUM         = 1;   // starting number of astroids
 const ROIDS_JAG         = 0.4; // jaggedness of astroids (0 = none, 1 = lots)
+const ROIDS_PTS_LGE     = 20;  // points scored for a large asteroids
+const ROIDS_PTS_MED     = 50;  // points scored for a medium asteroids
+const ROIDS_PTS_SML     = 100; // points scored for a small asteroids
 const ROIDS_SIZE        = 100; // starting size of astroids in pixels
 const ROIDS_SPD         = 30;  // max starting speed of astroids in pixels pre second
 const ROIDS_VERT        = 10;  // average number of vertices on each astroid
+const SAVE_KEY_SCORE    = 'highscore';  // save key for localstorage for high score
 const SHIP_EXPLODE_DUR  = 0.5; // duration of the ship's explosion in seconds
 const SHIP_BLINK_DUR    = 0.1; // duration of the ship's blink during invisibilityin seconds
 const SHIP_INV_DUR      = 3;   // duration of the ship's invisibility in seconds
@@ -26,7 +30,7 @@ let canv = document.getElementById('gameCanvas');
 let ctx = canv.getContext('2d');
 
 // set up the game parameters
-let level, roids, ship, text, textAlpha;
+let level, roids, score, scoreHigh, ship, text, textAlpha;
 newGame();
 
 // set up event handlers
@@ -57,9 +61,19 @@ function destroyAsteroids(index) {
   if (r == Math.ceil(ROIDS_SIZE / 2)) {
     roids.push(newAstreroid(x, y, Math.ceil(ROIDS_SIZE / 4)));
     roids.push(newAstreroid(x, y, Math.ceil(ROIDS_SIZE / 4)));
+    score += ROIDS_PTS_LGE;
   } else if (r == Math.ceil(ROIDS_SIZE / 4)) {
     roids.push(newAstreroid(x, y, Math.ceil(ROIDS_SIZE / 8)));
     roids.push(newAstreroid(x, y, Math.ceil(ROIDS_SIZE / 8)));
+    score += ROIDS_PTS_MED;
+  } else {
+    score += ROIDS_PTS_SML;
+  }
+
+  // chack high score
+  if (score > scoreHigh) {
+    scoreHigh = score;
+    localStorage.setItem(SAVE_KEY_SCORE, scoreHigh);
   }
 
   // destroy the original asteroids
@@ -152,6 +166,16 @@ function newAstreroid(x, y, r) {
 function newGame() {
   level = 0;
   lives = GAME_LIVES;
+  score = 0;
+
+  // get the high score from localstorage
+  let scoreStr = localStorage.getItem(SAVE_KEY_SCORE);
+  if (scoreStr == null) {
+    scoreHigh = 0;
+  } else {
+    scoreHigh = parseInt(scoreStr);
+  }
+  
   // set up ship object
   ship = newShip();
   newLevel();
@@ -284,6 +308,20 @@ function update() {
     lifeColor = (exploding && i == lives - 1) ? "red" : "white";
     drawShip(SHIP_SIZE + i * SHIP_SIZE * 1.2, SHIP_SIZE, 0.5 * Math.PI, lifeColor);
   }
+
+  // draw the score
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = 'white';
+  ctx.font = `${TEXT_SIZE}px dejavu sans mono`;
+  ctx.fillText(score, canv.width - SHIP_SIZE / 2, SHIP_SIZE);
+
+  // draw the high score
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = 'white';
+  ctx.font = `${TEXT_SIZE * 0.75}px dejavu sans mono`;
+  ctx.fillText("BEST " + scoreHigh, canv.width / 2, SHIP_SIZE);
 
   // detect lasers hits on asteroids
   let ax, ay, ar, lx, ly;
