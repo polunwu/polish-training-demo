@@ -6,6 +6,9 @@ html, body {
   margin: 0px auto;
   padding: 100px 200px;
   text-align: center; }
+  @media (max-width: 414px) {
+    .container {
+      padding: 30px 30px; } }
 
 .lang-control {
   font-size: 0; }
