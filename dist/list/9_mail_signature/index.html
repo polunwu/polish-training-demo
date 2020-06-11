@@ -13,7 +13,7 @@
   <table id="signature" align="center" border="0" cellpadding="0" cellspacing="0"
     style="border-collapse: collapse; border-color: red;" width="100%">
     <tr>
-      <td width="100%" style="">
+      <td width="100%">
         <table align="center" border="0" cellpadding="0" cellspacing="0"
           style="border-collapse: collapse; border-color: red;" width="100%">
           <tr>
@@ -35,10 +35,10 @@
                       style="border-collapse: collapse; display: inline-block; border-color: greenyellow; vertical-align: top;">
                       <tr>
                         <td style="width: 150px; padding-top: 22px; padding-left: 30px; padding-bottom: 0px;">
-                          <span
+                          <span class="positionArea"
                             style="display: inline-block; padding-bottom: 5px; color: rgba(255,255,255,0.5); font-weight: 200; font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, Arial, Helvetica, sans-serif;">Visual
                             Designer.</span></br>
-                          <span
+                          <span class="nameArea"
                             style="display: inline-block; padding-top: 0px; color: white; font-weight: 800; font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, Arial, Helvetica, sans-serif;">Kevin</span>
                         </td>
                       </tr>
@@ -49,13 +49,13 @@
                         <td style="width: 230px; padding-top: 22px; padding-left: 30px; padding-bottom: 22px;">
                           <span
                             style="display: inline-block; padding-bottom: 5px; color: rgba(255,255,255,0.5); font-weight: 200; font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, Arial, Helvetica, sans-serif;">Mobile.
-                            <span><a href="tel:+886903583235"
+                            <span><a class="phoneArea" href="tel:+886903583235"
                                 style="color: rgba(255,255,255,0.5) !important; text-decoration: none !important;">+886
                                 903 583 235</a></span></span></br>
                           <span
                             style="display: inline-block; padding-bottom: 5px; color: rgba(255,255,255,0.5); font-weight: 200; font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, Arial, Helvetica, sans-serif;">Email.
                             <span style="color: rgba(255,255,255,0.5) !important; text-decoration: none !important;"><a
-                                href="mailto:kevin@polish-design.com.tw"
+                                class="mailArea" href="mailto:kevin@polish-design.com.tw"
                                 style="color: rgba(255,255,255,0.5) !important; text-decoration: none !important;">kevin@polish-design.com.tw</a></span></span>
                         </td>
                       </tr>
@@ -72,6 +72,48 @@
   </table>
 
 
+  <form action=""
+    style="margin: 30px; font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, Arial, Helvetica, sans-serif;">
+    <label for="position">職稱：</label>
+    <input style="padding: 5px; width: 200px;" type="text" name="position" id="position" value="Visual Designer."></br>
+    <label for="name">姓名：</label>
+    <input style="padding: 5px; width: 200px;" type="text" name="name" id="name" value="Kevin"></br>
+    <label for="phone">電話：</label>
+    <input style="padding: 5px; width: 200px;" type="text" name="phone" id="phone" value="+886 903 583 235"></br>
+    <label for="mail">mail：</label>
+    <input style="padding: 5px; width: 200px;" type="text" name="mail" id="mail"
+      value="kevin@polish-design.com.tw"></br>
+    <input style="font-size: 30px;" type="submit" value="輸入完成！">
+  </form>
 </body>
+
+<script>
+  const form = document.querySelector('form');
+  const pos = document.querySelector('.positionArea');
+  const name = document.querySelector('.nameArea');
+  const phone = document.querySelector('.phoneArea');
+  const mail = document.querySelector('.mailArea');
+
+  document.querySelector('#position').addEventListener('input', function (e) {
+    pos.innerText = e.target.value.trim();
+  });
+  document.querySelector('#name').addEventListener('input', function (e) {
+    name.innerText = e.target.value.trim();
+  });
+  document.querySelector('#phone').addEventListener('input', function (e) {
+    phone.innerText = e.target.value.trim();
+    let phoneHref = e.target.value.trim().split(" ").join("");
+    phone.setAttribute("href", 'tel:' + phoneHref);
+  });
+  document.querySelector('#mail').addEventListener('input', function (e) {
+    mail.innerText = e.target.value.trim();
+    mail.setAttribute("href", 'mailto:' + e.target.value.trim());
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    form.remove();
+    alert('* 已輸入完成\n* 確定後 ctrl+A 全選, ctrl+C 複製整個簽名檔\n* 到 Gmail 簽名檔設定區塊，ctrl+C 貼上\n* 記得勾選預設使用的 email 、使用簽名並儲存');
+  });
+</script>
 
 </html>
