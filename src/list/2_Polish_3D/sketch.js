@@ -10,13 +10,19 @@ function setup() {
 
 function draw() {
   background(0);
-  scale(1.8);
+  scale(2.8);
+  rotateY(frameCount * 0.03); // rotate environment
+
+  push();
   rotateX(radians(180));
-  rotateX(frameCount * 0.01);
-  rotateY(frameCount * 0.01);
-  rotateZ(frameCount * 0.01);
+  rotateZ(radians(15));
+  rotateY(frameCount * 0.01); // rotate self
+  // rotateX(frameCount * 0.01);
+  // rotateZ(frameCount * 0.01);
   normalMaterial();
   model(polishman);
+  pop();
+  
 }
 
 function windowResized() {
