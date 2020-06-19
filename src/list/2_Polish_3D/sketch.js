@@ -41,8 +41,8 @@ function draw() {
   env.x_off += 0.0025;
   env.y_off += 0.0025;
   env.z_off += 0.0025;
-  env.x_pos = noise(env.x_off) * 100;
-  env.y_pos = noise(env.y_off) * 60 + 20;
+  env.x_pos = noise(env.x_off) * 100 - 50;
+  env.y_pos = noise(env.y_off) * 60 - 10;
   translate(env.x_pos, env.y_pos, env.z_pos);
   rotateY(radians(env.angle)); // rotate environment
 
