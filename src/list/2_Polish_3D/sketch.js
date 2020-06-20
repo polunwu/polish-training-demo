@@ -30,7 +30,7 @@ let man = {
     speed: 0.5
   },
   z: {
-    angle: 15,
+    angle: 10,
     speed: 0.15
   }
 }
@@ -41,8 +41,8 @@ function draw() {
   env.x_off += 0.0025;
   env.y_off += 0.0025;
   env.z_off += 0.0025;
-  env.x_pos = noise(env.x_off) * 100 - 50;
-  env.y_pos = noise(env.y_off) * 60 - 10;
+  env.x_pos = noise(env.x_off) * 100 - 50; // range: -50~50
+  env.y_pos = noise(env.y_off) * 60; // range: 0~60
   translate(env.x_pos, env.y_pos, env.z_pos);
   rotateY(radians(env.angle)); // rotate environment
 
