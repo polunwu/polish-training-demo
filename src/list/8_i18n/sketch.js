@@ -32,7 +32,7 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
       
       // translate all text feilds
       document.querySelectorAll('[data-field]').forEach(el => {
-        el.innerText = i18n(el.dataset.field.toLowerCase());
+        el.innerHtml = i18n(el.dataset.field.toLowerCase());
       });
 
     }
