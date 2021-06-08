@@ -107,8 +107,11 @@ window.addEventListener('load', () => {
 
     reader.addEventListener(
       'load',
-      function () {
-        img.src = reader.result;
+      async function () {
+        const rawImg = await Jimp.read(reader.result);
+        rawImg.resize(256, Jimp.AUTO); // 壓縮
+        let imgType = rawImg.getExtension().toLowerCase(); // png/jpg
+        img.src = await rawImg.getBase64Async(`image/${imgType}`);
         startBtn.classList.remove('hide');
       },
       false
