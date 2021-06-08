@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>20210608_12_tensorflow</title>
+    <!-- Load TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"></script>
+    <!-- Load BodyPix -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script>
+    <!-- Load Jimp -->
+    <script src="https://unpkg.com/jimp@0.14.0/browser/lib/jimp.js"></script>
+  </head>
+
+  <body>
+    <h2 class='loading'>...Loading Model</h2>
+    <input id="img-upload" type="file" accept="image/*" capture class="hide">
+    <button id='start-btn' class="hide">開始去背</button>
+
+    <img id='image' class="hide" src='' />
+    <canvas id='canvas'></canvas>
+    <img id='output-img' src="" alt="">
+
+
+    <script src="sketch.js"></script>
+  </body>
+</html>
