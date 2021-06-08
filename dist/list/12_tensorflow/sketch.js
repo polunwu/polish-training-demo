@@ -91,11 +91,12 @@ window.addEventListener('load', () => {
   loadBodyPix();
 
   startBtn.addEventListener('click', () => {
+    loading.innerHTML = '...Loading segmentPerson';
+    startBtn.disabled = true;
+
     setTimeout(() => {
-      loading.innerHTML = '...Loading segmentPerson';
-      startBtn.disabled = true;
-    }, 0);
-    predict();
+      predict();
+    }, 0); // 奇怪！避免上方 DOM Manipulate 被 BLOCK
   });
 
   imgUpload.addEventListener('change', previewFile);
