@@ -88,8 +88,11 @@ window.addEventListener('load', () => {
     const outputSrc = await jimp.getBase64Async(Jimp.MIME_PNG);
     outputImg.src = outputSrc;
   }
+
+  // 載入 BodyPix 模型
   loadBodyPix();
 
+  // 開始去背
   startBtn.addEventListener('click', () => {
     loading.innerHTML = '...Loading segmentPerson';
     startBtn.disabled = true;
@@ -99,6 +102,7 @@ window.addEventListener('load', () => {
     }, 0); // 奇怪！避免上方 DOM Manipulate 被 BLOCK
   });
 
+  // 載入圖片
   imgUpload.addEventListener('change', previewFile);
 
   function previewFile() {
