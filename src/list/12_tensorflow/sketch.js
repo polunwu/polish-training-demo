@@ -44,8 +44,6 @@ window.addEventListener('load', () => {
       maxDetections: 10,
       scoreThreshold: 0.4,
       nmsRadius: 20,
-      minKeypointScore: 0.3,
-      refineSteps: 10,
     });
     setLoadingMsg('...segmentPerson complete');
     console.log(segmentation);
