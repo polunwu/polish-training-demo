@@ -14,6 +14,11 @@ window.addEventListener('load', () => {
     quantBytes: 2,
   };
 
+  function setLoadingMsg(msg) {
+    if (typeof msg !== 'string') return;
+    loading.innerHTML = msg;
+  }
+
   async function loadBodyPix() {
     net = await bodyPix.load(modelConfig);
 
@@ -26,7 +31,7 @@ window.addEventListener('load', () => {
      * See documentation below for details on each method.
      */
     console.log(net);
-    loading.innerHTML = 'finish Loading Model';
+    setLoadingMsg('finish Loading Model');
     imgUpload.classList.remove('hide');
     img.classList.remove('hide');
   }
@@ -42,7 +47,7 @@ window.addEventListener('load', () => {
       minKeypointScore: 0.3,
       refineSteps: 10,
     });
-    loading.innerHTML = '...segmentPerson complete';
+    setLoadingMsg('...segmentPerson complete');
     console.log(segmentation);
 
     const maskBackground = true;
@@ -70,10 +75,10 @@ window.addEventListener('load', () => {
       flipHorizontal
     );
 
-    loading.innerHTML = '...Loading Jimp';
+    setLoadingMsg('...Loading Jimp');
     const originImg = img.src;
     const jimp = await Jimp.read(originImg);
-    loading.innerHTML = '...finish Jimp';
+    setLoadingMsg('...finish Jimp');
 
     let count = 0;
     for (let i = 0; i < segmentation.height; i++) {
@@ -88,10 +93,13 @@ window.addEventListener('load', () => {
     const outputSrc = await jimp.getBase64Async(Jimp.MIME_PNG);
     outputImg.src = outputSrc;
   }
+
+  // 載入 BodyPix 模型
   loadBodyPix();
 
+  // 開始去背
   startBtn.addEventListener('click', () => {
-    loading.innerHTML = '...Loading segmentPerson';
+    setLoadingMsg('...Loading segmentPerson');
     startBtn.disabled = true;
 
     setTimeout(() => {
@@ -99,6 +107,7 @@ window.addEventListener('load', () => {
     }, 0); // 奇怪！避免上方 DOM Manipulate 被 BLOCK
   });
 
+  // 載入圖片
   imgUpload.addEventListener('change', previewFile);
 
   function previewFile() {
@@ -110,16 +119,28 @@ window.addEventListener('load', () => {
       'load',
       async function () {
         const rawImg = await Jimp.read(reader.result);
-        rawImg.resize(256, Jimp.AUTO); // 壓縮
+
+        // 取得方向，欲旋轉角度 from utils.js
+        const orientation = getOrientation(reader.result);
+        const deg = convertRotationToDegrees(orientation);
+        // console.log(deg);
+
+        // 旋轉，壓縮
+        await rawImg.rotate(deg).resize(375, Jimp.AUTO);
+
+        // 寫入 img tag
         let imgType = rawImg.getExtension().toLowerCase(); // png/jpg
         img.src = await rawImg.getBase64Async(`image/${imgType}`);
         startBtn.classList.remove('hide');
+
+        setLoadingMsg('finish Loading Image');
       },
       false
     );
 
     if (file) {
-      reader.readAsDataURL(file);
+      setLoadingMsg('...Loading Image');
+      reader.readAsArrayBuffer(file);
     }
   }
 });
