@@ -1,0 +1,12 @@
+:root {
+  --success-color: #2ecc71;
+  --error-color: #e74c3c; }
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+html,
+body {
+  margin: 0;
+  padding: 0; }
