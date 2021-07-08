@@ -16,7 +16,7 @@
     <div id="loader">Loading...</div>
     <!-- SEE: https://github.com/fcor/arjs-gestures/blob/master/index.html -->
     <a-scene
-      arjs="detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+      arjs
       embedded
       renderer="logarithmicDepthBuffer: true;"
       vr-mode-ui="enabled: false"
@@ -37,7 +37,9 @@
       </a-assets>
 
       <a-marker
-        type='barcode' value='5'
+        preset="custom"
+        type="pattern" 
+        url="pattern-FDPG.patt"
         raycaster="objects: .clickable"
         emitevents="true"
         cursor="fuse: false; rayOrigin: mouse;"
