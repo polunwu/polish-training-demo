@@ -11,13 +11,18 @@
     <!-- This is to load the A-frame extras, that contain the required components that are used to show the animations -->
     <!-- of the 3D model of the robot -->
     <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>   
+    <!-- merge-images -->
+    <script src="https://unpkg.com/merge-images"></script>
 
     <script src="gesture-detector.js"></script>
     <script src="gesture-handler.js"></script>
   </head>
 
   <body>
+    <!-- Loader -->
     <div id="loader">Loading...</div>
+
+    <!-- A-frame -->
     <!-- SEE: https://github.com/fcor/arjs-gestures/blob/master/index.html -->
     <a-scene
       arjs
@@ -69,6 +74,15 @@
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
+
+    <!-- UI -->
+    <div id="snap-btn">
+      <img class="icon" src="assets/images/photo.png" alt="take photo">
+    </div>
+
+    <div id="snap-frame">
+      <img class="result" src="" alt="">
+    </div>
     <script src="sketch.js"></script>
   </body>
 </html>

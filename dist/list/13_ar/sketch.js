@@ -3,6 +3,47 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
+function getCaptureImage(origCanvas, width, height) {
+  let resizedCanvas = document.createElement('canvas');
+
+  resizedCanvas.width = width;
+  resizedCanvas.height = height;
+
+  if (width > height) {
+    // Landscape
+    // originCanvas: 4096 x 2048
+    // video: 640 x 480
+    // 這邊 originCanvas height 自動被壓縮了 1.5 倍，很奇怪
+    resizedCanvas.getContext('2d').drawImage(origCanvas, 0, 0, width, height);
+  } else {
+    // Portrait
+    // originCanvas: 4096 x 2048
+    // video: 480 x 640
+    // console.log('origin', origCanvas.width, origCanvas.height);
+    // console.log('target', width, height);
+    var scale = height / origCanvas.height; // 將 originCanvas 縮小至與 video 等高
+    // console.log('scale: ', scale);
+    var scaledHeight = origCanvas.height * scale;
+    var scaledWidth = (origCanvas.width * scale) / 1.5; // 寬度也必須再壓縮 1.5 倍才會看起來是正確比例，很奇怪。
+    var marginLeft = (width - scaledWidth) / 2;
+    // console.log(scaledWidth, scaledHeight);
+    resizedCanvas
+      .getContext('2d')
+      .drawImage(origCanvas, marginLeft, 0, scaledWidth, scaledHeight);
+  }
+
+  return resizedCanvas.toDataURL();
+}
+
+function getCaptureImageFromVideo(video, width, height) {
+  let tempCanvas = document.createElement('canvas');
+  tempCanvas.width = width;
+  tempCanvas.height = height;
+  tempCanvas.getContext('2d').drawImage(video, 0, 0, width, height);
+
+  return tempCanvas.toDataURL();
+}
+
 window.addEventListener('load', () => {
   let loader = document.querySelector('#loader');
   let model = document.querySelector('#bowser-model');
@@ -21,8 +62,9 @@ window.addEventListener('load', () => {
     loader.classList.remove('hide');
   });
 
-  // 隨機生成模型
-  switch (getRandomInt(3)) {
+  // 隨機載入模型
+  // switch (getRandomInt(3)) {
+  switch (0) {
     case 0:
       modelPath = 'model/untitled/Untitled.gltf';
       break;
@@ -37,4 +79,30 @@ window.addEventListener('load', () => {
   }
   console.log(modelPath);
   model.setAttribute('gltf-model', modelPath);
+
+  // 拍照
+  let snapBtn = document.querySelector('#snap-btn');
+  snapBtn.addEventListener('click', function () {
+    // 1. Get from canvas
+    const sceneEl = document.querySelector('a-scene');
+    const sceneCanvas = sceneEl.components.screenshot.getCanvas('perspective');
+
+    // 2. Get from stream video
+    const video = document.querySelector('#arjs-video');
+    const videoImageUrl = getCaptureImageFromVideo(
+      video,
+      video.videoWidth,
+      video.videoHeight
+    );
+    const sceneImageUrl = getCaptureImage(
+      sceneCanvas,
+      video.videoWidth, // same size with stream video
+      video.videoHeight
+    );
+
+    // 3. merge sceneImageUrl + videoImageUrl
+    mergeImages([videoImageUrl, sceneImageUrl]).then((b64) => {
+      document.querySelector('#snap-frame .result').src = b64;
+    });
+  });
 });

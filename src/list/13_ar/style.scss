@@ -25,3 +25,38 @@ body {
     display: none;
   }
 }
+
+#snap-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: fixed;
+  left: 50%;
+  bottom: 10%;
+  transform: translate(-50%, 0%);
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  .icon {
+    width: 60%;
+  }
+}
+
+#snap-frame {
+  box-sizing: content-box;
+  width: 50vw;
+  height: 66.67vw;
+  padding: 20px;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  .result {
+    width: 100%;
+  }
+}
