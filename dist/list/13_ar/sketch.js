@@ -22,12 +22,19 @@ window.addEventListener('load', () => {
   });
 
   // 隨機生成模型
-  if (getRandomInt(2) === 0) {
-    // 0, 1 隨機對應 model 路徑
-    modelPath = 'model/untitled/Untitled.gltf';
-  } else {
-    modelPath = 'model/water/water.gltf';
+  switch (getRandomInt(3)) {
+    case 0:
+      modelPath = 'model/untitled/Untitled.gltf';
+      break;
+    case 1:
+      modelPath = 'model/water/water.gltf';
+      break;
+    case 2:
+      modelPath = 'model/robot/BrainStem.glb';
+      break;
+    default:
+      break;
   }
   console.log(modelPath);
-  // model.setAttribute('gltf-model', modelPath);
+  model.setAttribute('gltf-model', modelPath);
 });
