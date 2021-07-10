@@ -13,7 +13,8 @@ function getCaptureImage(origCanvas, width, height) {
     // Landscape
     // originCanvas: 4096 x 2048
     // video: 640 x 480
-    // 這邊 originCanvas height 自動被壓縮了 1.5 倍，很奇怪
+    // 這邊 originCanvas 原圖高度比例有被自動被壓縮了 1.5 倍，很奇怪。
+    // 因此 originCanvas -> 畫到 640 x 480 時，反而剛好把比例調整回來
     resizedCanvas.getContext('2d').drawImage(origCanvas, 0, 0, width, height);
   } else {
     // Portrait
@@ -21,11 +22,11 @@ function getCaptureImage(origCanvas, width, height) {
     // video: 480 x 640
     // console.log('origin', origCanvas.width, origCanvas.height);
     // console.log('target', width, height);
-    var scale = height / origCanvas.height; // 將 originCanvas 縮小至與 video 等高
+    let scale = height / origCanvas.height; // 將 originCanvas 縮小至與 video 等高
     // console.log('scale: ', scale);
-    var scaledHeight = origCanvas.height * scale;
-    var scaledWidth = (origCanvas.width * scale) / 1.5; // 寬度也必須再壓縮 1.5 倍才會看起來是正確比例，很奇怪。
-    var marginLeft = (width - scaledWidth) / 2;
+    let scaledHeight = origCanvas.height * scale;
+    let scaledWidth = (origCanvas.width * scale) / 1.5; // 寬度也必須再壓縮 1.5 倍才會看起來是正確比例。
+    let marginLeft = (width - scaledWidth) / 2;
     // console.log(scaledWidth, scaledHeight);
     resizedCanvas
       .getContext('2d')
