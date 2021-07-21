@@ -65,7 +65,7 @@ window.addEventListener('load', () => {
 
   // 隨機載入模型
   // switch (getRandomInt(3)) {
-  switch (0) {
+  switch (2) {
     case 0:
       modelPath = 'model/untitled/Untitled.gltf';
       break;
@@ -84,26 +84,29 @@ window.addEventListener('load', () => {
   // 拍照
   let snapBtn = document.querySelector('#snap-btn');
   snapBtn.addEventListener('click', function () {
-    // 1. Get from canvas
-    const sceneEl = document.querySelector('a-scene');
-    const sceneCanvas = sceneEl.components.screenshot.getCanvas('perspective');
-
-    // 2. Get from stream video
-    const video = document.querySelector('#arjs-video');
-    const videoImageUrl = getCaptureImageFromVideo(
-      video,
-      video.videoWidth,
-      video.videoHeight
-    );
-    const sceneImageUrl = getCaptureImage(
-      sceneCanvas,
-      video.videoWidth, // same size with stream video
-      video.videoHeight
-    );
-
-    // 3. merge sceneImageUrl + videoImageUrl
-    mergeImages([videoImageUrl, sceneImageUrl]).then((b64) => {
-      document.querySelector('#snap-frame .result').src = b64;
-    });
+    // // 1. Get from canvas
+    // const sceneEl = document.querySelector('a-scene');
+    // const sceneCanvas = sceneEl.components.screenshot.getCanvas('perspective');
+    // // 2. Get from stream video
+    // const video = document.querySelector('#arjs-video');
+    // const videoImageUrl = getCaptureImageFromVideo(
+    //   video,
+    //   video.videoWidth,
+    //   video.videoHeight
+    // );
+    // const sceneImageUrl = getCaptureImage(
+    //   sceneCanvas,
+    //   video.videoWidth, // same size with stream video
+    //   video.videoHeight
+    // );
+    // // 3. merge sceneImageUrl + videoImageUrl
+    // mergeImages([videoImageUrl, sceneImageUrl]).then((b64) => {
+    //   document.querySelector('#snap-frame .result').src = b64;
+    // });
   });
+});
+
+const marker = document.querySelector('#markerA');
+marker.addEventListener('markerFound', function () {
+  alert('markerFound');
 });
