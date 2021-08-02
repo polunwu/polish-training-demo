@@ -67,13 +67,13 @@ window.addEventListener('load', () => {
   // switch (getRandomInt(3)) {
   switch (2) {
     case 0:
-      modelPath = 'model/untitled/Untitled.gltf';
+      modelPath = 'ar/model/untitled/Untitled.gltf';
       break;
     case 1:
-      modelPath = 'model/water/water.gltf';
+      modelPath = 'ar/model/water/water.gltf';
       break;
     case 2:
-      modelPath = 'model/robot/BrainStem.glb';
+      modelPath = 'ar/model/robot/BrainStem.glb';
       break;
     default:
       break;
