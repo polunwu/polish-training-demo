@@ -65,12 +65,12 @@ window.addEventListener('load', () => {
 
   // 隨機載入模型
   // switch (getRandomInt(3)) {
-  switch (2) {
+  switch (1) {
     case 0:
       modelPath = 'ar/model/untitled/Untitled.gltf';
       break;
     case 1:
-      modelPath = 'ar/model/water/water.gltf';
+      modelPath = 'ar/model/card/結果卡牌.glb';
       break;
     case 2:
       modelPath = 'ar/model/robot/BrainStem.glb';
