@@ -31,6 +31,8 @@
       vr-mode-ui="enabled: false"
       gesture-detector
       id="scene"
+      light="defaultLightsEnabled: false"
+      stats
     >
       <a-assets>
         <!-- <a-asset-item
@@ -78,7 +80,8 @@
         </a-entity>
       </a-marker>
       <!-- Custom light -->
-      <a-entity light="type: directional; color: #FFF; intensity: 6" position="0 0.5 2"></a-entity>
+      <a-entity light="type: ambient; color: #FFF"></a-entity>
+      <!-- <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="0 1 2"></a-entity> -->
       <a-entity camera></a-entity>
     </a-scene>
 
