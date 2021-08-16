@@ -70,7 +70,7 @@ window.addEventListener('load', () => {
       modelPath = 'ar/model/untitled/Untitled.gltf';
       break;
     case 1:
-      modelPath = 'ar/model/card/0813_Test.glb';
+      modelPath = 'ar/model/card/Infinite_Light.glb';
       break;
     case 2:
       modelPath = 'ar/model/robot/BrainStem.glb';
