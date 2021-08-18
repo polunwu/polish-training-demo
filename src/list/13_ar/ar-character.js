@@ -70,7 +70,7 @@ window.addEventListener('load', () => {
       modelPath = 'ar/model/untitled/Untitled.gltf';
       break;
     case 1:
-      modelPath = 'ar/model/card/0817_Motion&Balls_Position.glb';
+      modelPath = 'ar/model/card/Floating_Bake_1.glb';
       break;
     case 2:
       modelPath = 'ar/model/robot/BrainStem.glb';
@@ -108,5 +108,5 @@ window.addEventListener('load', () => {
 
 const marker = document.querySelector('#markerA');
 marker.addEventListener('markerFound', function () {
-  alert('markerFound');
+  console.log('markerFound');
 });
