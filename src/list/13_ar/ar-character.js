@@ -70,10 +70,10 @@ window.addEventListener('load', () => {
       modelPath = 'ar/model/untitled/Untitled.gltf';
       break;
     case 1:
-      modelPath = 'ar/model/card/2models.glb';
+      modelPath = 'ar/model/card/Thick_Bake.glb';
       break;
     case 2:
-      modelPath = 'ar/model/robot/BrainStem.glb';
+      modelPath = 'ar/model/robot/Distance_2_bake.glb';
       break;
     default:
       break;
@@ -110,3 +110,14 @@ const marker = document.querySelector('#markerA');
 marker.addEventListener('markerFound', function () {
   console.log('markerFound');
 });
+
+// document.addEventListener('DOMContentLoaded', function (evt) {
+//   var sceneEl = document.querySelector('a-scene');
+
+//   sceneEl.addEventListener('loaded', function (evt) {
+//     var newCamera = new THREE.PerspectiveCamera();
+//     newCamera.near = 0.000001;
+//     newCamera.far = 1000;
+//     sceneEl.camera = newCamera;
+//   });
+// });
