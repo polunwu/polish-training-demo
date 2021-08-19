@@ -1,4 +1,5 @@
 $white: #ffffff;
+$primary: #10384a;
 
 * {
   box-sizing: border-box;
@@ -8,6 +9,12 @@ html,
 body {
   margin: 0;
   padding: 0;
+  touch-action: manipulation; // prevent Double-tap
+  font-size: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Segoe UI',
+    'Noto Sans TC', Roboto, Ubuntu, 'Helvetica Neue', Helvetica, Arial,
+    'Source Han Sans TC', sans-serif;
+  color: $white;
 }
 
 #loader {
@@ -55,5 +62,125 @@ body {
 
   .result {
     width: 100%;
+  }
+}
+
+// 返回、資訊鈕、關閉資訊 modal 鈕
+.back-btn,
+.info-btn,
+.close-btn {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
+  border: 1px solid $white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.back-btn {
+  z-index: 10;
+  top: 21px;
+  left: 22px;
+
+  .icon {
+    width: 24px;
+    height: 20px;
+  }
+}
+
+.info-btn {
+  z-index: 8;
+  top: 21px;
+  right: 22px;
+
+  .icon {
+    width: 17px;
+    height: 27px;
+  }
+}
+
+.info-modal {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: rgba($color: $primary, $alpha: 0.94);
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .close-btn {
+    top: 21px;
+    right: 22px;
+
+    .icon {
+      width: 17px;
+      height: 17px;
+    }
+
+    .close-text {
+      position: absolute;
+      color: $white;
+      line-height: 21px;
+      top: 15px;
+      right: 65px;
+      width: 35px;
+    }
+  }
+
+  .info-title {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 16vh;
+    margin-bottom: 3vh;
+
+    @media screen and (max-height: 630px) {
+      display: none;
+    }
+  }
+
+  .describe-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 327px;
+    margin: 0 auto;
+
+    @media screen and (max-height: 630px) {
+      margin-top: 90px;
+    }
+
+    .describe {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+      padding: 31px 9px 0 25px;
+      border-bottom: 1px solid $white;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &__img {
+        width: 74px;
+        height: 74px;
+        margin-right: 43px;
+        margin-bottom: 32px;
+      }
+    }
   }
 }

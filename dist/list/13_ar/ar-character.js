@@ -111,13 +111,15 @@ marker.addEventListener('markerFound', function () {
   console.log('markerFound');
 });
 
-// document.addEventListener('DOMContentLoaded', function (evt) {
-//   var sceneEl = document.querySelector('a-scene');
+document.addEventListener('DOMContentLoaded', function (evt) {
+  const infoBtn = document.querySelector('.info-btn');
+  const infoModal = document.querySelector('.info-modal');
+  const infoCloseBtn = infoModal.querySelector('.close-btn');
 
-//   sceneEl.addEventListener('loaded', function (evt) {
-//     var newCamera = new THREE.PerspectiveCamera();
-//     newCamera.near = 0.000001;
-//     newCamera.far = 1000;
-//     sceneEl.camera = newCamera;
-//   });
-// });
+  infoBtn.addEventListener('click', function () {
+    infoModal.classList.add('show');
+  });
+  infoCloseBtn.addEventListener('click', function () {
+    infoModal.classList.remove('show');
+  });
+});
