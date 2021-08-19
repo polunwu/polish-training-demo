@@ -2,10 +2,20 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+html {
+  width: 100vw;
+  height: 100%;
+  overflow: hidden; }
+
 html,
 body {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  font-size: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Segoe UI', 'Noto Sans TC', Roboto, Ubuntu, 'Helvetica Neue', Helvetica, Arial, 'Source Han Sans TC', sans-serif;
+  color: #ffffff; }
 
 #loader {
   color: #ffffff;

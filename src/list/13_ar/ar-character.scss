@@ -5,6 +5,14 @@ $primary: #10384a;
   box-sizing: border-box;
 }
 
+html {
+  // 重要！AR.js 會搗亂你的 body width，造成莫名的滾動條
+  width: 100vw;
+  height: 100%;
+  overflow: hidden;
+  // 重要！AR.js 會搗亂你的 body width，造成莫名的滾動條
+}
+
 html,
 body {
   margin: 0;
