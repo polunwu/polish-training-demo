@@ -1,6 +1,6 @@
 $white: #ffffff;
 $primary: #10384a;
-$snapBtnShowTime: 1.2s;
+$snapBtnShowTime: 1s;
 
 * {
   box-sizing: border-box;
@@ -202,6 +202,7 @@ body {
   }
 }
 
+// 截圖鈕
 #snap-btn {
   position: fixed;
   z-index: 2;
@@ -213,7 +214,13 @@ body {
   bottom: 25px;
   background: rgba($color: $primary, $alpha: 0.5);
 
-  transition: all $snapBtnShowTime ease;
+  cursor: pointer;
+  &:active {
+    background-color: rgba($color: $primary, $alpha: 0.8);
+  }
+
+  transition: transform $snapBtnShowTime ease, opacity $snapBtnShowTime ease,
+    background-color 0.2s ease;
   opacity: 1;
   visibility: visible;
   transform-origin: center;
@@ -228,6 +235,10 @@ body {
     font-weight: 500;
     line-height: 27px;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     .icon {
       margin-right: 21px;
       height: 27px;
@@ -238,5 +249,128 @@ body {
     transform: scale(0);
     opacity: 0;
     visibility: hidden;
+  }
+}
+
+#snap-modal {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  overflow: scroll;
+  text-align: center;
+
+  background-color: rgba($color: $primary, $alpha: 0.94);
+
+  // opacity: 0;
+  // visibility: hidden;
+  // transition: opacity 0.35s ease, visibility 0.35s ease;
+
+  // &.show {
+  //   opacity: 1;
+  //   visibility: visible;
+  // }
+
+  .result {
+    width: 86vw;
+    height: 114.67vw;
+    margin: 27px auto 0 auto;
+    background-color: $white;
+  }
+
+  .press-hint {
+    margin: 30px auto 43px auto;
+    font-weight: 500;
+  }
+
+  .again {
+    width: 266px;
+    height: 64px;
+    border-radius: 25px;
+    border: 1px solid $white;
+    line-height: 64px;
+    font-weight: 500;
+    margin: 0 auto;
+    cursor: pointer;
+
+    background-image: url('ar/images/again_bg.png');
+    background-position: center;
+    background-size: cover;
+  }
+
+  .hashtag-section {
+    padding: 93px 27px 130px 27px;
+    background-image: url('ar/images/grid-bg.png');
+    background-position: 0% 0%;
+    background-size: 138vw;
+    background-repeat: no-repeat;
+    height: 427px;
+
+    .hashtags {
+      padding: 20px 12px;
+      background-color: rgba($color: $primary, $alpha: 0.88);
+      position: relative;
+
+      border-radius: 16px;
+      height: 204px;
+
+      p {
+        margin: 0;
+        text-align: left;
+        line-height: 25px;
+      }
+
+      .copy-btn {
+        width: 234px;
+        line-height: 64px;
+        height: 64px;
+        border-radius: 25px;
+        background-color: $white;
+        color: $primary;
+        font-weight: 500;
+        position: absolute;
+        bottom: -26px;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+      }
+
+      .copy-hint {
+        width: 72px;
+        height: 33px;
+        line-height: 33px;
+        background-color: rgba($color: $white, $alpha: 0.83);
+        color: $primary;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 50px;
+      }
+    }
+  }
+
+  .share {
+    width: 116px;
+    height: 116px;
+    margin-top: -27px;
+  }
+
+  .share-hint {
+    margin: 28px auto 68px auto;
+  }
+
+  .back-home {
+    width: 266px;
+    line-height: 64px;
+    height: 64px;
+    border-radius: 25px;
+    background-color: $white;
+    color: $primary;
+    font-weight: 500;
+    margin: 0 auto 92px auto;
+    cursor: pointer;
   }
 }

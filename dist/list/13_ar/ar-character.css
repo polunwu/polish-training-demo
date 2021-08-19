@@ -163,11 +163,11 @@ body {
   -webkit-animation: breathe 2s ease infinite;
   animation: breathe 2s ease infinite; }
   .marker-hint.hide {
-    -webkit-transition: -webkit-transform 1.2s ease;
-    transition: -webkit-transform 1.2s ease;
-    -o-transition: transform 1.2s ease;
-    transition: transform 1.2s ease;
-    transition: transform 1.2s ease, -webkit-transform 1.2s ease;
+    -webkit-transition: -webkit-transform 1s ease;
+    transition: -webkit-transform 1s ease;
+    -o-transition: transform 1s ease;
+    transition: transform 1s ease;
+    transition: transform 1s ease, -webkit-transform 1s ease;
     -webkit-transform: scale(0);
     -ms-transform: scale(0);
     transform: scale(0); }
@@ -198,9 +198,12 @@ body {
   border: 14px solid #10384a;
   bottom: 25px;
   background: rgba(16, 56, 74, 0.5);
-  -webkit-transition: all 1.2s ease;
-  -o-transition: all 1.2s ease;
-  transition: all 1.2s ease;
+  cursor: pointer;
+  -webkit-transition: opacity 1s ease, background-color 0.2s ease, -webkit-transform 1s ease;
+  transition: opacity 1s ease, background-color 0.2s ease, -webkit-transform 1s ease;
+  -o-transition: transform 1s ease, opacity 1s ease, background-color 0.2s ease;
+  transition: transform 1s ease, opacity 1s ease, background-color 0.2s ease;
+  transition: transform 1s ease, opacity 1s ease, background-color 0.2s ease, -webkit-transform 1s ease;
   opacity: 1;
   visibility: visible;
   -webkit-transform-origin: center;
@@ -215,11 +218,22 @@ body {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center; }
+  #snap-btn:active {
+    background-color: rgba(16, 56, 74, 0.8); }
   #snap-btn .snap-text {
     text-align: center;
     font-size: 20px;
     font-weight: 500;
-    line-height: 27px; }
+    line-height: 27px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
     #snap-btn .snap-text .icon {
       margin-right: 21px;
       height: 27px; }
@@ -229,3 +243,94 @@ body {
     transform: scale(0);
     opacity: 0;
     visibility: hidden; }
+
+#snap-modal {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: scroll;
+  text-align: center;
+  background-color: rgba(16, 56, 74, 0.94); }
+  #snap-modal .result {
+    width: 86vw;
+    height: 114.67vw;
+    margin: 27px auto 0 auto;
+    background-color: #ffffff; }
+  #snap-modal .press-hint {
+    margin: 30px auto 43px auto;
+    font-weight: 500; }
+  #snap-modal .again {
+    width: 266px;
+    height: 64px;
+    border-radius: 25px;
+    border: 1px solid #ffffff;
+    line-height: 64px;
+    font-weight: 500;
+    margin: 0 auto;
+    cursor: pointer;
+    background-image: url("ar/images/again_bg.png");
+    background-position: center;
+    background-size: cover; }
+  #snap-modal .hashtag-section {
+    padding: 93px 27px 130px 27px;
+    background-image: url("ar/images/grid-bg.png");
+    background-position: 0% 0%;
+    background-size: 138vw;
+    background-repeat: no-repeat;
+    height: 427px; }
+    #snap-modal .hashtag-section .hashtags {
+      padding: 20px 12px;
+      background-color: rgba(16, 56, 74, 0.88);
+      position: relative;
+      border-radius: 16px;
+      height: 204px; }
+      #snap-modal .hashtag-section .hashtags p {
+        margin: 0;
+        text-align: left;
+        line-height: 25px; }
+      #snap-modal .hashtag-section .hashtags .copy-btn {
+        width: 234px;
+        line-height: 64px;
+        height: 64px;
+        border-radius: 25px;
+        background-color: #ffffff;
+        color: #10384a;
+        font-weight: 500;
+        position: absolute;
+        bottom: -26px;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+        cursor: pointer; }
+      #snap-modal .hashtag-section .hashtags .copy-hint {
+        width: 72px;
+        height: 33px;
+        line-height: 33px;
+        background-color: rgba(255, 255, 255, 0.83);
+        color: #10384a;
+        position: absolute;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+        bottom: 50px; }
+  #snap-modal .share {
+    width: 116px;
+    height: 116px;
+    margin-top: -27px; }
+  #snap-modal .share-hint {
+    margin: 28px auto 68px auto; }
+  #snap-modal .back-home {
+    width: 266px;
+    line-height: 64px;
+    height: 64px;
+    border-radius: 25px;
+    background-color: #ffffff;
+    color: #10384a;
+    font-weight: 500;
+    margin: 0 auto 92px auto;
+    cursor: pointer; }
