@@ -106,9 +106,16 @@ window.addEventListener('load', () => {
   });
 });
 
+const snapBtn = document.querySelector('#snap-btn');
 const marker = document.querySelector('#markerA');
+const markerHint = document.querySelector('.marker-hint');
 marker.addEventListener('markerFound', function () {
-  console.log('markerFound');
+  // 偵測到 marker，隱藏提示、顯示拍照鈕
+  markerHint.style.animation = 'none';
+  setTimeout(() => {
+    snapBtn.classList.remove('hide');
+    markerHint.classList.add('hide');
+  }, 100);
 });
 
 document.addEventListener('DOMContentLoaded', function (evt) {

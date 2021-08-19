@@ -20,7 +20,7 @@
 
   <body>
     <!-- Loader -->
-    <div id="loader">Loading...</div>
+    <div id="loader">載入中...</div>
 
     <!-- A-frame -->
     <!-- SEE: https://github.com/fcor/arjs-gestures/blob/master/index.html -->
@@ -118,8 +118,12 @@
         </div>
       </div>
     </div>
-    <div id="snap-btn">
-      <img class="icon" src="ar/images/photo.png" alt="take photo">
+    <img class="marker-hint" src="ar/images/marker-hint.png" alt="marker-hint">
+    <div id="snap-btn" class="hide">
+      <div class="snap-text">
+        <img class="icon" src="ar/images/photo.svg" alt="take photo">
+        <span>截圖結果</span>
+      </div>
     </div>
 
     <!-- <div id="snap-frame">
