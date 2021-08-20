@@ -265,15 +265,15 @@ body {
 
   background-color: rgba($color: $primary, $alpha: 0.94);
 
-  display: none;
-  // opacity: 0;
-  // visibility: hidden;
-  // transition: opacity 0.35s ease, visibility 0.35s ease;
+  // display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
 
-  // &.show {
-  //   opacity: 1;
-  //   visibility: visible;
-  // }
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
 
   .result {
     width: 86vw;
@@ -373,5 +373,29 @@ body {
     font-weight: 500;
     margin: 0 auto 92px auto;
     cursor: pointer;
+  }
+}
+
+#snap-flash {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  overflow: scroll;
+  text-align: center;
+
+  background-color: $white;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.5s ease, visibility 1.5s ease;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.1s ease, visibility 0.1s ease;
   }
 }

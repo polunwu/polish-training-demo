@@ -45,7 +45,8 @@ function getCaptureImageFromVideo(video, width, height) {
   return tempCanvas.toDataURL();
 }
 
-window.addEventListener('load', () => {
+// 載入模型
+function load3DModel() {
   let loader = document.querySelector('#loader');
   let model = document.querySelector('#bowser-model');
   let modelPath = '';
@@ -80,45 +81,74 @@ window.addEventListener('load', () => {
   }
   console.log(modelPath);
   model.setAttribute('gltf-model', modelPath);
+}
 
-  // 拍照
-  let snapBtn = document.querySelector('#snap-btn');
-  snapBtn.addEventListener('click', function () {
-    // // 1. Get from canvas
-    // const sceneEl = document.querySelector('a-scene');
-    // const sceneCanvas = sceneEl.components.screenshot.getCanvas('perspective');
-    // // 2. Get from stream video
-    // const video = document.querySelector('#arjs-video');
-    // const videoImageUrl = getCaptureImageFromVideo(
-    //   video,
-    //   video.videoWidth,
-    //   video.videoHeight
-    // );
-    // const sceneImageUrl = getCaptureImage(
-    //   sceneCanvas,
-    //   video.videoWidth, // same size with stream video
-    //   video.videoHeight
-    // );
-    // // 3. merge sceneImageUrl + videoImageUrl
-    // mergeImages([videoImageUrl, sceneImageUrl]).then((b64) => {
-    //   document.querySelector('#snap-frame .result').src = b64;
-    // });
+// 閃光效果
+function flash() {
+  const snapFlash = document.querySelector('#snap-flash');
+  snapFlash.classList.add('show');
+  setTimeout(() => {
+    snapFlash.classList.remove('show');
+  }, 100);
+}
+
+function showResultModel() {
+  const modal = document.querySelector('#snap-modal');
+  modal.classList.add('show');
+}
+
+// 截圖
+function capture() {
+  // 1. Get from canvas
+  const sceneEl = document.querySelector('a-scene');
+  const sceneCanvas = sceneEl.components.screenshot.getCanvas('perspective');
+  // 2. Get from stream video
+  const video = document.querySelector('#arjs-video');
+  console.log(video.videoWidth, video.videoHeight);
+  const videoImageUrl = getCaptureImageFromVideo(
+    video,
+    video.videoWidth,
+    video.videoHeight
+  );
+  const sceneImageUrl = getCaptureImage(
+    sceneCanvas,
+    video.videoWidth, // same size with stream video
+    video.videoHeight
+  );
+  // 3. merge sceneImageUrl + videoImageUrl
+  mergeImages([videoImageUrl, sceneImageUrl]).then((b64) => {
+    document.querySelector('#snap-modal .result').src = b64;
+  });
+}
+
+window.addEventListener('load', function () {
+  // 1. 載入模型
+  load3DModel();
+  // 2. 拍照功能
+  document.querySelector('#snap-btn').addEventListener('click', function () {
+    flash();
+    showResultModel();
+    setTimeout(() => {
+      capture();
+    }, 1000);
   });
 });
 
-const snapBtn = document.querySelector('#snap-btn');
-const marker = document.querySelector('#markerA');
-const markerHint = document.querySelector('.marker-hint');
-marker.addEventListener('markerFound', function () {
-  // 偵測到 marker，隱藏提示、顯示拍照鈕
-  markerHint.style.animation = 'none';
-  setTimeout(() => {
-    snapBtn.classList.remove('hide');
-    markerHint.classList.add('hide');
-  }, 100);
-});
-
 document.addEventListener('DOMContentLoaded', function (evt) {
+  // 1. 偵測 marker 處理
+  const snapBtn = document.querySelector('#snap-btn');
+  const marker = document.querySelector('#markerA');
+  const markerHint = document.querySelector('.marker-hint');
+  marker.addEventListener('markerFound', function () {
+    // 偵測到 marker，隱藏提示、顯示拍照鈕
+    markerHint.style.animation = 'none';
+    setTimeout(() => {
+      snapBtn.classList.remove('hide');
+      markerHint.classList.add('hide');
+    }, 100);
+  });
+
+  // 2. 資訊開關
   const infoBtn = document.querySelector('.info-btn');
   const infoModal = document.querySelector('.info-modal');
   const infoCloseBtn = infoModal.querySelector('.close-btn');
@@ -129,4 +159,12 @@ document.addEventListener('DOMContentLoaded', function (evt) {
   infoCloseBtn.addEventListener('click', function () {
     infoModal.classList.remove('show');
   });
+
+  // 3. 關閉結果 modal
+  const closeBtn = document.querySelector('#snap-modal .again');
+  closeBtn.addEventListener('click', function () {
+    document.querySelector('#snap-modal').classList.remove('show');
+  });
+
+  // 4. 頁面跳轉
 });
