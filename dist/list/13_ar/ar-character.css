@@ -253,7 +253,8 @@ body {
   bottom: 0;
   overflow: scroll;
   text-align: center;
-  background-color: rgba(16, 56, 74, 0.94); }
+  background-color: rgba(16, 56, 74, 0.94);
+  display: none; }
   #snap-modal .result {
     width: 86vw;
     height: 114.67vw;
