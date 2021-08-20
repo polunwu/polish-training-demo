@@ -165,6 +165,9 @@ document.addEventListener('DOMContentLoaded', function (evt) {
   const closeBtn = document.querySelector('#snap-modal .again');
   closeBtn.addEventListener('click', function () {
     document.querySelector('#snap-modal').classList.remove('show');
+    setTimeout(() => {
+      document.querySelector('#snap-modal .result').src = '';
+    }, 400);
   });
 
   // 4. 頁面跳轉
