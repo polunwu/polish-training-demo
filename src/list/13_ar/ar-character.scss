@@ -349,7 +349,17 @@ body {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        bottom: 50px;
+
+        opacity: 0;
+        visibility: hidden;
+        bottom: 25px;
+        transition: opacity 0.2s, bottom 0.2s, visibility 0.2s;
+
+        &.show {
+          bottom: 50px;
+          opacity: 1;
+          visibility: visible;
+        }
       }
     }
   }

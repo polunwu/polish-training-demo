@@ -326,7 +326,16 @@ body {
         -webkit-transform: translateX(-50%);
         -ms-transform: translateX(-50%);
         transform: translateX(-50%);
-        bottom: 50px; }
+        opacity: 0;
+        visibility: hidden;
+        bottom: 25px;
+        -webkit-transition: opacity 0.2s, bottom 0.2s, visibility 0.2s;
+        -o-transition: opacity 0.2s, bottom 0.2s, visibility 0.2s;
+        transition: opacity 0.2s, bottom 0.2s, visibility 0.2s; }
+        #snap-modal .hashtag-section .hashtags .copy-hint.show {
+          bottom: 50px;
+          opacity: 1;
+          visibility: visible; }
   #snap-modal .share {
     width: 116px;
     height: 116px;

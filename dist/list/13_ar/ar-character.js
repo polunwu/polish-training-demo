@@ -45,6 +45,9 @@ function getCaptureImageFromVideo(video, width, height) {
   return tempCanvas.toDataURL();
 }
 
+// hashtag 文字
+function getHashtagText() {}
+
 // 載入模型
 function load3DModel() {
   let loader = document.querySelector('#loader');
@@ -170,5 +173,28 @@ document.addEventListener('DOMContentLoaded', function (evt) {
     }, 400);
   });
 
-  // 4. 頁面跳轉
+  // 4. 返回首頁
+  document.querySelectorAll('.js-back-home').forEach(function (el) {
+    el.addEventListener('click', function () {
+      window.location.href = window.location.origin + '/fdpg/';
+    });
+  });
+
+  // 5. 複製 hashtags
+  document.querySelector('.copy-btn').addEventListener('click', function () {
+    const hint = document.querySelector('.copy-hint');
+    const copyText =
+      '#FourdesirePlayground2021 #我是玩新探險家勾勾狸 #生活遊樂場';
+    navigator.clipboard
+      .writeText(copyText)
+      .then(function () {
+        hint.classList.add('show');
+        setTimeout(() => {
+          hint.classList.remove('show');
+        }, 1000);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  });
 });
