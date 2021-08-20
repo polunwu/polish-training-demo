@@ -94,6 +94,7 @@ function flash() {
 
 function showResultModel() {
   const modal = document.querySelector('#snap-modal');
+  modal.scrollTop = 0;
   modal.classList.add('show');
 }
 
