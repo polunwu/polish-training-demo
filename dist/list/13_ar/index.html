@@ -35,26 +35,6 @@
       light="defaultLightsEnabled: false"
     >
       <a-assets>
-        <!-- <a-asset-item
-          id="box"
-          src="ar/model/untitled/Untitled.gltf"
-        >
-        </a-asset-item>
-        <a-asset-item
-          id="water"
-          src="ar/model/water/water.gltf"
-        >
-        </a-asset-item>
-        <a-asset-item
-          id="robot"
-          src="ar/model/robot/BrainStem.glb"
-        >
-        </a-asset-item> -->
-        <!-- <a-asset-item
-          id="card"
-          src="ar/model/card/結果卡牌.glb"
-        >
-        </a-asset-item> -->
       </a-assets>
 
       <a-marker
@@ -128,7 +108,13 @@
     </div>
 
     <div id="snap-modal">
-      <img class="result" src="" alt="">
+      <div class="result-wrapper">
+        <img class="result" src="" alt="">
+        <div class="result-block">
+          <img class="result-loader" src="ar/images/snap-loader.svg" alt="result loader">
+          <img class="result-logo" src="ar/images/snap-logo.svg" alt="result logo">
+        </div>
+      </div>
       <h4 class="press-hint">手機長按圖片下載就可以加到相簿！</h4>
       <div class="again">
         重新拍照

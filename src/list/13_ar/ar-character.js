@@ -1,3 +1,19 @@
+const USER_KEY_NAME = 'ozj32uqurm';
+const ACQUIRED_KEY_NAME = 'u3fm32k6rul3nk4';
+const HASHTAGS = {
+  c1: '超級行動派柯林斯',
+  c2: '號召力一流的強尼教練',
+  c3: '星際領航員豆子',
+  c4: '理財金頭腦錢喵喵',
+  c5: '精打細算的鷹主管',
+  c6: '優雅夢想家狐老大',
+  c7: '心靈療癒師蒲公英',
+  c8: '正能量滿滿的向日葵',
+  c9: '知性園丁黃金葛',
+  c10: '玩心探險家勾勾狸',
+  c11: '理性計畫通勾勾狸',
+  c12: '勇敢無懼的勾勾狸',
+};
 // 隨機生成 0 到 (max-1) 的整數
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -45,8 +61,33 @@ function getCaptureImageFromVideo(video, width, height) {
   return tempCanvas.toDataURL();
 }
 
+// 角色編號
+function getCharString() {
+  const user = localStorage.getItem(USER_KEY_NAME);
+  if (user) {
+    return user.character;
+  }
+  return 'c1';
+}
+
 // hashtag 文字
-function getHashtagText() {}
+function getHashtagText(character) {
+  return (
+    '#FourdesirePlayground2021 #我是' + HASHTAGS[character] + ' #生活遊樂場'
+  );
+}
+function getHashtagHTML(character) {
+  return (
+    '#FourdesirePlayground2021<br/>#我是' +
+    HASHTAGS[character] +
+    '<br/>#生活遊樂場'
+  );
+}
+
+// 儲存已取得角色
+function setAcquired() {
+  localStorage.setItem(ACQUIRED_KEY_NAME, true);
+}
 
 // 載入模型
 function load3DModel() {
@@ -67,21 +108,8 @@ function load3DModel() {
     loader.classList.remove('hide');
   });
 
-  // 隨機載入模型
-  // switch (getRandomInt(3)) {
-  switch (1) {
-    case 0:
-      modelPath = 'ar/model/untitled/Untitled.gltf';
-      break;
-    case 1:
-      modelPath = 'ar/model/card/0820_Ball_Brightness50_bake.glb';
-      break;
-    case 2:
-      modelPath = 'ar/model/robot/Distance_2_bake.glb';
-      break;
-    default:
-      break;
-  }
+  // 載入模型
+  modelPath = 'ar/model/card/' + window.character + '.glb';
   console.log(modelPath);
   model.setAttribute('gltf-model', modelPath);
 }
@@ -122,10 +150,13 @@ function capture() {
   // 3. merge sceneImageUrl + videoImageUrl
   mergeImages([videoImageUrl, sceneImageUrl]).then((b64) => {
     document.querySelector('#snap-modal .result').src = b64;
+    document.querySelector('.result-block').classList.add('hide');
   });
 }
 
 window.addEventListener('load', function () {
+  // 0. 讀取使用者資訊
+  window.character = getCharString();
   // 1. 載入模型
   load3DModel();
   // 2. 拍照功能
@@ -136,6 +167,10 @@ window.addEventListener('load', function () {
       capture();
     }, 1000);
   });
+  // 3. 寫入角色名稱
+  document.querySelector('.hashtags p').innerHTML = getHashtagHTML(
+    window.character
+  );
 });
 
 document.addEventListener('DOMContentLoaded', function (evt) {
@@ -150,6 +185,8 @@ document.addEventListener('DOMContentLoaded', function (evt) {
       snapBtn.classList.remove('hide');
       markerHint.classList.add('hide');
     }, 100);
+    // 儲存已取得角色
+    setAcquired();
   });
 
   // 2. 資訊開關
@@ -170,6 +207,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
     document.querySelector('#snap-modal').classList.remove('show');
     setTimeout(() => {
       document.querySelector('#snap-modal .result').src = '';
+      document.querySelector('.result-block').classList.remove('hide');
     }, 400);
   });
 
@@ -183,8 +221,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
   // 5. 複製 hashtags
   document.querySelector('.copy-btn').addEventListener('click', function () {
     const hint = document.querySelector('.copy-hint');
-    const copyText =
-      '#FourdesirePlayground2021 #我是玩新探險家勾勾狸 #生活遊樂場';
+    const copyText = getHashtagText(window.character);
     navigator.clipboard
       .writeText(copyText)
       .then(function () {

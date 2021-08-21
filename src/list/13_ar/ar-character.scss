@@ -39,21 +39,6 @@ body {
   }
 }
 
-#snap-frame {
-  box-sizing: content-box;
-  width: 50vw;
-  height: 66.67vw;
-  padding: 20px;
-  background-color: $white;
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  .result {
-    width: 100%;
-  }
-}
-
 // 返回、資訊鈕、關閉資訊 modal 鈕
 .back-btn,
 .info-btn,
@@ -275,10 +260,52 @@ body {
     visibility: visible;
   }
 
-  .result {
-    width: 86vw;
-    height: 114.67vw;
+  .result-wrapper {
+    position: relative;
     margin: 27px auto 0 auto;
+    width: 86vw;
+    border-radius: 16px;
+    overflow: hidden;
+
+    .result-block {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #fff;
+
+      transition: opacity 0.6s, visibility 0.6s;
+      opacity: 1;
+      visibility: visible;
+
+      &.hide {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+
+    .result-loader {
+      position: absolute;
+      width: 69px;
+      height: 69px;
+      top: 45%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%) rotate(0deg);
+
+      transform-origin: center;
+      animation: rotate-loader 1.2s ease infinite;
+    }
+    .result-logo {
+      position: absolute;
+      width: 77.6%;
+      left: 11.2%;
+      bottom: 29px;
+    }
+  }
+  .result {
+    width: 100%;
+    height: 114.67vw;
     background-color: $white;
     border-radius: 16px;
   }
@@ -408,5 +435,17 @@ body {
     opacity: 1;
     visibility: visible;
     transition: opacity 0.1s ease, visibility 0.1s ease;
+  }
+}
+
+@keyframes rotate-loader {
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  }
+  75% {
+    transform: translateX(-50%) translateY(-50%) rotate(360deg);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) rotate(360deg);
   }
 }
