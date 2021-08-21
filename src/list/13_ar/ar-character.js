@@ -63,7 +63,7 @@ function getCaptureImageFromVideo(video, width, height) {
 
 // 角色編號
 function getCharString() {
-  const user = localStorage.getItem(USER_KEY_NAME);
+  const user = JSON.parse(localStorage.getItem(USER_KEY_NAME));
   if (user) {
     return user.character;
   }
