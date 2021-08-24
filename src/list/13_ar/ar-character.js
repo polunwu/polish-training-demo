@@ -135,7 +135,7 @@ function loadTestModel() {
   });
 
   // 載入模型
-  modelPath = 'ar/model/test/0824_Null.glb';
+  modelPath = 'ar/model/test/0824_Null_axis_0.glb';
   console.log(modelPath);
   model.setAttribute('gltf-model', modelPath);
 }
