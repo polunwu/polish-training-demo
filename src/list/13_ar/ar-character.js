@@ -14,6 +14,7 @@ const HASHTAGS = {
   c11: '理性計畫通勾勾狸',
   c12: '勇敢無懼的勾勾狸',
 };
+const SNAP_SCALE = 2;
 // 隨機生成 0 到 (max-1) 的整數
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -152,6 +153,7 @@ function showResultModel() {
   const modal = document.querySelector('#snap-modal');
   modal.scrollTop = 0;
   modal.classList.add('show');
+  document.querySelector('.result-block').classList.remove('hide');
 }
 
 // 截圖
@@ -164,13 +166,13 @@ function capture() {
   console.log(video.videoWidth, video.videoHeight);
   const videoImageUrl = getCaptureImageFromVideo(
     video,
-    video.videoWidth,
-    video.videoHeight
+    video.videoWidth * SNAP_SCALE,
+    video.videoHeight * SNAP_SCALE
   );
   const sceneImageUrl = getCaptureImage(
     sceneCanvas,
-    video.videoWidth, // same size with stream video
-    video.videoHeight
+    video.videoWidth * SNAP_SCALE, // same size with stream video
+    video.videoHeight * SNAP_SCALE
   );
   // 3. merge sceneImageUrl + videoImageUrl
   mergeImages([videoImageUrl, sceneImageUrl]).then((b64) => {
@@ -191,7 +193,7 @@ window.addEventListener('load', function () {
     showResultModel();
     setTimeout(() => {
       capture();
-    }, 1000);
+    }, 360);
   });
   // 3. 寫入角色名稱
   document.querySelector('.hashtags p').innerHTML = getHashtagHTML(
