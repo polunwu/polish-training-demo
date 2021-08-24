@@ -185,8 +185,7 @@ window.addEventListener('load', function () {
   // 0. 讀取使用者資訊
   window.character = getCharString();
   // 1. 載入模型
-  // load3DModel();
-  loadTestModel();
+  load3DModel();
   // 2. 拍照功能
   document.querySelector('#snap-btn').addEventListener('click', function () {
     flash();
