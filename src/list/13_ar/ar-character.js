@@ -14,7 +14,7 @@ const HASHTAGS = {
   c11: '理性計畫通勾勾狸',
   c12: '勇敢無懼的勾勾狸',
 };
-const SNAP_SCALE = 2;
+const SNAP_SCALE = 3;
 // 隨機生成 0 到 (max-1) 的整數
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -135,7 +135,7 @@ function loadTestModel() {
   });
 
   // 載入模型
-  modelPath = 'ar/model/test/0824_Null_axis_0.glb';
+  modelPath = 'ar/model/test/0824_near.glb';
   console.log(modelPath);
   model.setAttribute('gltf-model', modelPath);
 }
