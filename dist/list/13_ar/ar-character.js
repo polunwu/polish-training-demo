@@ -114,6 +114,31 @@ function load3DModel() {
   model.setAttribute('gltf-model', modelPath);
 }
 
+// 測試用模型
+function loadTestModel() {
+  let loader = document.querySelector('#loader');
+  let model = document.querySelector('#bowser-model');
+  let modelPath = '';
+
+  // 模型載入事件
+  model.addEventListener('model-loaded', function () {
+    console.log('model-loaded');
+    setTimeout(() => {
+      loader.classList.add('hide');
+    }, 1000);
+  });
+  model.addEventListener('model-error', function () {
+    console.log('model-loaded');
+    loader.textContent = '錯誤';
+    loader.classList.remove('hide');
+  });
+
+  // 載入模型
+  modelPath = 'ar/model/test/0824_Null.glb';
+  console.log(modelPath);
+  model.setAttribute('gltf-model', modelPath);
+}
+
 // 閃光效果
 function flash() {
   const snapFlash = document.querySelector('#snap-flash');
@@ -158,7 +183,8 @@ window.addEventListener('load', function () {
   // 0. 讀取使用者資訊
   window.character = getCharString();
   // 1. 載入模型
-  load3DModel();
+  // load3DModel();
+  loadTestModel();
   // 2. 拍照功能
   document.querySelector('#snap-btn').addEventListener('click', function () {
     flash();
