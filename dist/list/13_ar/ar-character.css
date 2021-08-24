@@ -143,13 +143,13 @@ body {
   z-index: 0;
   width: 63vw;
   left: 18.5vw;
-  -webkit-transform: scaleY(1.5);
-  -ms-transform: scaleY(1.5);
-  transform: scaleY(1.5);
+  -webkit-transform: scale(0.7);
+  -ms-transform: scale(0.7);
+  transform: scale(0.7);
   -webkit-transform-origin: center;
   -ms-transform-origin: center;
   transform-origin: center;
-  bottom: 9vh;
+  bottom: 20vh;
   -webkit-animation: breathe 2s ease infinite;
   animation: breathe 2s ease infinite; }
   .marker-hint.hide {

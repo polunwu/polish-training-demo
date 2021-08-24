@@ -168,9 +168,9 @@ body {
   z-index: 0;
   width: 63vw;
   left: 18.5vw;
-  transform: scaleY(1.5);
+  transform: scale(0.7);
   transform-origin: center;
-  bottom: 9vh;
+  bottom: 20vh;
   animation: breathe 2s ease infinite;
 
   &.hide {
