@@ -73,16 +73,10 @@ function getCharString() {
 
 // hashtag 文字
 function getHashtagText(character) {
-  return (
-    '#FourdesirePlayground2021 #我是' + HASHTAGS[character] + ' #生活遊樂場'
-  );
+  return '#fourdesire #我是 ' + HASHTAGS[character] + ' #生活遊樂場';
 }
 function getHashtagHTML(character) {
-  return (
-    '#FourdesirePlayground2021<br/>#我是' +
-    HASHTAGS[character] +
-    '<br/>#生活遊樂場'
-  );
+  return '#fourdesire<br/>#我是 ' + HASHTAGS[character] + '<br/>#生活遊樂場';
 }
 
 // 儲存已取得角色
